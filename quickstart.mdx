@@ -58,61 +58,45 @@ Follow these steps to get started with SelfHoster Pro.
 
 </AccordionGroup>
 
-### Install required tools
+### Installer
 
-We want to make sure you have all the tools required to run the installer. Please install the following tools in your local machine.
+The installer has been designed to make the setup process as easy as possible.
 
-We will try to improve the installer to automatically install these tools in the future.
+1. Position yourself in the root of the project.
+2. Copy `./terraform/secrets.auto.tfvars.example` to `./terraform/secrets.auto.tfvars` and update the file with your credentials.
 
-<AccordionGroup>
+```bash
+cp ./terraform/secrets.auto.tfvars.example ./terraform/secrets.auto.tfvars
+echo "Edit this file with your credentials"
+```
 
-  <Accordion icon="cloudflare" title="Install cloudflared">
-    Install cloudflared in your local machine. This tool will be used to authenticate with Cloudflare Access.
+3. Copy `./terraform/variables.auto.tfvars.example` to `terraform/variables.auto.tfvars` and update the file with your project name. (Change project_name, and you can leave the defaults as they are)
 
-    [Install cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation)
+```bash
+cp ./terraform/variables.auto.tfvars.example ./terraform/variables.auto.tfvars
+echo "Edit this file with your project name"
+```
 
-  </Accordion>
+4. Run the installer `./selfhoster --start` and follow the instructions.
 
-  <Accordion icon="terraform" title="Install terraform">
-    Install terraform in your local machine. This tool will be used to create the resources in your AWS account.
+```bash
+./selfhoster --start
+```
 
-    [Install terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+> The installer will start a docker image, where it will run first aws configure to set up your credentials, and then it will run terraform to create the resources in your account.
 
-  </Accordion>
+### Access coolify
 
-  <Accordion icon="code" title="Install Go">
-    Install Go in your local machine. This tool will be used to run the installer.
-
-    [Install Go](https://golang.org/doc/install)
-
-  </Accordion>
-
-</AccordionGroup>
-
-### Add your credentials to the installer
-
-#### Configure the installe
-
-Our Installer automatically creates the resources in your AWS and Cloudflare
-account. You need to configure the installer with your AWS and Cloudflare
-credentials.
-
-1. Download the installer. Currently we are on Beta, you can request access to the beta by joining our discord server.
-2. Copy `secrets.auto.tfvars.example` to `secrets.auto.tfvars` and update the file with your credentials.
-3. Copy `variables.auto.tfvars.example` to `variables.auto.tfvars` and update the file with your domain and subdomain.
-4. Add your public ssh key to `terraform/config/ssh/public_keys` file. (copy from `~/.ssh/id_rsa.pub` or generate a new one)
-
-You can leave the rest of defaults as they are. If you modify the instance type, make sure to also update the `ami_id` in the `variables.auto.tfvars` file.
-
-### Run the installer
-
-Run the installer `./selfhoster --init` in the root of the project.
-The installer will create the resources in your AWS account and configure the DNS records in Cloudflare.
-
-## Access coolify
-
-If you have followed the steps correctly, you should be able to access coolify dashboard at the following URL: `https://ops.yourdomain.com`
+If you have followed the steps correctly, after a few minutes you should be able to access **coolify dashboard** at the following URL: `https://ops.yourdomain.com`
 If it's the first time accessing the dashboard, you will be asked to authenticate by cloudflare.
+
+### SSH Access
+
+Also you can **ssh to the instance** using the following command:
+
+```bash
+ssh ubuntu@ssh.yourdomain.com
+```
 
 <CardGroup>
 
