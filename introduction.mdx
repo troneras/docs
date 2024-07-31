@@ -4,13 +4,8 @@ description: "Welcome to SelfHoster Pro"
 ---
 
 <img
-  className="block dark:hidden"
-  src="/images/hero-light.svg"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.svg"
+  className="block"
+  src="https://selfhoster.pro/morpheo-hero.png"
   alt="Hero Dark"
 />
 
@@ -19,19 +14,8 @@ description: "Welcome to SelfHoster Pro"
 The first step to self host is to get credentials from your cloud providers.
 
 <CardGroup cols={2}>
-  <Card
-    title="Setup your AWS credentials"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Setup your AWS credentials
-  </Card>
-  <Card
-    title="Setup you Cloudflare account"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Get your Cloudflare api key
+  <Card title="Initial setup" icon="pen-to-square" href="/quickstart">
+    Initial SelfHoster setup
   </Card>
 </CardGroup>
 
@@ -41,31 +25,25 @@ Add your provider credential to the installer, and run the installer to create y
 
 <CardGroup cols={2}>
   <Card
-    title="Update your secrets"
+    title="Join Beta"
     icon="palette"
-    href="https://mintlify.com/docs/settings/global"
+    href="/beta/join-beta"
   >
-    Update the installer configuration with your cloud provider credentials
+    Do you want to join the beta? Click here
   </Card>
   <Card
-    title="Configure the ssh keys for your server"
+    title="SSH Access"
     icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
+    href="/examples/ssh-access"
   >
-    Add a list of keys that should be able to access your server
+    SSH access your server
   </Card>
   <Card
     title="Configure your subdomains"
     icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
+    href="/examples/new-subdomains"
   >
     Map subdomains to your services
   </Card>
-  <Card
-    title="App Deployment Guides"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our examples on how to host popular apps
-  </Card>
+
 </CardGroup>

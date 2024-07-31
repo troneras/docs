@@ -1,0 +1,33 @@
+---
+title: "SSH Access"
+description: "Access your server using SSH"
+icon: "code"
+---
+
+## Access your server using SSH
+
+You can securely access your server using SSH. Your ssh connection will be protected by Cloudflare Access, and tunneled through Cloudflare Tunnel.
+This means that your server doesn't need to expose any open port to the internet.
+
+Run the following command to access your server:
+
+```bash
+ssh ubuntu@ssh.yourdomain.com
+```
+
+If you want to use a different ssh key, you can specify the key with the `-i` flag:
+
+```bash
+ssh -i ~/.ssh/id_rsa ubuntu@ssh.yourdomain.com
+```
+
+## Troubleshooting
+
+If you are having trouble connecting to your server, is possible that the public key was not added to the `terraform/config/ssh/public_keys` list.
+To add a new key, update the `terraform/config/ssh/public_keys` list with the new key.
+
+And run the installer `./selfhoster --apply` in the root of the project.
+
+- Second option is to access the server from AWS console. You can access the server from the AWS console by navigating to the EC2 instance and clicking on the `Connect` button.
+- Third, and last resort option, is to set `allow_ssh    = true` in the `variables.auto.tfvars` file, and run `./selfhoster --apply`. This will open the port 22 to the internet, and you will be able to access the server using the public IP address.
+(Not recommended, but still an option if you are having trouble accessing the server)
