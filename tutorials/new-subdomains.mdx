@@ -1,0 +1,50 @@
+---
+title: "Cloudflare tunneling and access"
+description: "Add new subdomains and route them to your app"
+icon: "code"
+---
+
+## Case A: Cloudflare access (This is what you probably want)
+
+If you want to protect your subdomains with Cloudflare Access, you can add them to the `cloudflare_access_applications` list in the `variables.auto.tfvars` file.
+For example, imagine that using Coolify you've deployed a service that is running on the subdomain `htop.yourdomain.com`. You can add this subdomain to the `cloudflare_access_applications` list to protect it with Cloudflare Access.
+
+1. Update the `variables.auto.tfvars` file with the new subdomain to protect.
+
+```hcl
+cloudflare_access_applications = [
+  { name = "Access application for monitoring", domain = "htop" }, // add this
+  #...
+]
+```
+
+2. Run the installer `go run selfhoster.go --apply` in the root of the project.
+
+## Case B: Tunneling to services running directly on the instance
+
+Update the `variables.auto.tfvars` file with the new subdomain you want to add.
+
+**Example: Add a new subdomain `htop` to your domain.**
+
+1. Update the `variables.auto.tfvars` file with the new subdomain.
+
+This is how ssh works internally
+
+```hcl
+# The map of record to service running in the instance
+cloudflare_records = [
+  { name = "ssh", service = "http://<private_instance_ip>:22" },
+  { name = "ping", service = "http://<private_instance_ip>:8080" }, # something running on the instance
+  #...
+]
+## The domains that should request your email for access
+cloudflare_access_applications = [
+  { name = "Access application for monitoring", domain = "ssh" },
+  { name = "Access application for ping", domain = "ping" }, # something you want to protect
+  #...
+]
+```
+
+2. Run the installer `go run selfhoster.go --apply` in the root of the project.
+
+You should be able to access the new subdomain at the following URL: `https://htop.yourdomain.com`

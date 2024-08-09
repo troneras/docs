@@ -34,15 +34,22 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart"]
+      "pages": ["introduction"]
     },
     {
-      "group": "Examples",
-      "pages": ["examples/new-subdomains", "examples/ssh-access"]
+      "group": "Tutorials",
+      "pages": [
+        "tutorials/selfhosting-ghost",
+        "tutorials/creating-emails",
+        "tutorials/getting-out-of-aws-ses-sandbox",
+        "tutorials/securing-domain",
+        "tutorials/ssh-access",
+        "tutorials/new-subdomains"
+      ]
     },
     {
-      "group": "Beta",
-      "pages": ["beta/join-beta"]
+      "group": "Troubleshooting",
+      "pages": ["troubleshooting/installer-fails"]
     }
   ],
   "footerSocials": {

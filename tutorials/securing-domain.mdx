@@ -1,0 +1,34 @@
+---
+title: "Securing your domain with Cloudflare"
+description: "Protect your domain from DDoS attacks and more"
+icon: "shield"
+---
+
+## Protect your domain with Cloudflare
+
+Once you've published all your services, you might want to protect your domain from DDoS attacks, and other security threats. Cloudflare is a great service that can help you with that.
+
+<Note>
+  This guide assumes that you have already deployed your services and they are
+  accessible at `https://yourdomain.com`. or `https://subdomain.yourdomain.com`.
+
+Don't proceed with this guide if you haven't deployed your services yet.
+
+</Note>
+
+### 1. Update config
+
+In your `variables.auto.tfvars` set **enable_cloudflare_proxy** to `true`.
+
+```hcl
+enable_cloudflare_proxy=true
+```
+
+### 2. Run the installer
+
+Run the installer `go run selfhoster.go --apply` in the root of the project.
+
+### 3. Verify your domain
+
+Verify that you can still access your services at `https://yourdomain.com` or `https://subdomain.yourdomain.com`.
+In Cloudflare DNS records, you can see the orange cloud icon next to your domain, which means that the traffic is being proxied through Cloudflare.

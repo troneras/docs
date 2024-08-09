@@ -1,0 +1,23 @@
+---
+title: "Creating emails"
+description: "Create new email addresses for your domain"
+icon: "envelope"
+---
+
+In your `variables.auto.tfvars` file, you can set the `email_aliases` variable to create new email addresses for your domain.
+
+```hcl
+emails = {
+  send_only     = ["no-reply@example.com"]
+  send_receive  = ["support@example.com", "info@example.com"]
+  forward_email = "youremail@gmail.com"
+}
+```
+
+- **send_only**: These emails are supposed to send emails only. The first one in this list should be used as the sender email in your mailing list to avoid spam filters.
+  A SNS topic will be created for the bounces and complaints of this email. Listmonk will subscribe to this topic to handle the bounces and complaints.
+- **send_receive**: These emails can send and receive emails. You can use these emails to receive emails from your customers.
+- **forward_email**: All the emails received `*@yourdomain.com` will be forwarded to this account. You can use this email to receive all the emails sent to your domain and answer
+  with any of your custom domain emails.
+
+If you add more emails, run the installer `go run selfhoster.go --apply` in the root of the project. This operation is idempotent, so you can run it multiple times without any issues.

@@ -1,0 +1,61 @@
+---
+title: "SSH Access"
+description: "Access your server using SSH"
+icon: "window"
+---
+
+If you are using Coolify, you could very well never need to access your server directly. But if you need to, you can do it securely using SSH.
+
+## Access your server using SSH
+
+You can securely access your server using SSH. Your ssh connection will be protected by Cloudflare Access, and tunneled through Cloudflare Tunnel.
+This means that your server doesn't need to expose any open port to the internet.
+
+Run the following command to access your server:
+
+```bash
+ssh ubuntu@ssh.yourdomain.com
+```
+
+If you want to use a different ssh key, you can specify the key with the `-i` flag:
+
+```bash
+ssh -i ~/.ssh/id_rsa ubuntu@ssh.yourdomain.com
+```
+
+## Adding more public keys
+
+Once your instance is running, to add more public_keys to the server, ssh to the server and add the new public key to the `~/.ssh/authorized_keys` file.
+
+## Troubleshooting
+
+### Hanging forever when connecting
+
+Make sure that you've installed cloudflared and that you added in `~/.ssh/config` the following:
+
+```bash
+Host ssh.yourdomain.com
+  User ubuntu
+  IdentityFile ~/.ssh/id_rsa # or the path to your generated private key pair
+  ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h
+```
+
+### You forgot to add your public key
+
+You will need to add your public key to `terraform/config/ssh/public_keys` and run the installer `go run selfhoster.go --apply` in the root of the project. This will recreate the EC2 instance with the new public key.
+
+### Can't connect to the server
+
+If you are having trouble connecting to your server, is possible that the public key was not added to the `terraform/config/ssh/public_keys` list.
+To add a new key, update the `terraform/config/ssh/public_keys` list with the new key.
+
+And run the installer `go run selfhoster.go --apply` in the root of the project.
+
+- Last resort option, is to set `allow_ssh = true` in the `variables.auto.tfvars` file, and run `go run selfhoster --apply`. This will open the port 22 to the internet, and you will be able to access the server using the public IP address.
+  (Not recommended, but still an option if you are having trouble accessing the server)
+
+<Warning>
+  Adding new public_keys running apply will recreate the EC2 instance and you
+  may loose anything that is not backed up
+</Warning>
+```

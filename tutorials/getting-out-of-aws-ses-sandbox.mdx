@@ -1,0 +1,101 @@
+---
+title: "Getting out of AWS SES Sandbox"
+description: "Learn how to get your email out of the AWS Sandbox and start sending emails to anyone"
+icon: "handcuffs"
+---
+
+## Getting out of AWS SES Sandbox
+
+When you first start using AWS SES, your account is in the sandbox. This means that you can only send emails to verified email addresses. To get out of the sandbox, you need to request production access.
+
+<Accordion title="Production access template">
+
+Subject: Request for Production Access to Amazon SES
+
+Dear [Recipient's Name],
+
+I hope this message finds you well.
+
+We are a growing company focused on providing digital products to our customers, and email communication is a vital component of our customer engagement and support strategy. We are writing to request production access to Amazon SES for sending transactional and support emails.
+
+**Use Case Description:**
+
+Our primary use case for Amazon SES is to send transactional emails to users who register on our website. These emails include account verifications, password resets, order confirmations, and other essential communications. We also use email to provide direct support to our customers and to send important notifications.
+
+**Details of Our Email-Sending Processes:**
+
+1. **Current Email-Sending Volume and Frequency:**
+
+   - **Frequency:** We currently send emails on an ad-hoc basis, primarily for account verification, password resets, and customer support responses.
+   - **Volume:** At present, we send fewer than 100 emails per day. However, we anticipate this volume will increase as our user base grows and we introduce additional features and services.
+
+2. **Recipient List Management:**
+
+   - **List Acquisition:** Our recipient lists are developed through opt-in forms on our website, where users explicitly consent to receive communications from us.
+   - **List Maintenance:** We are committed to maintaining a clean and engaged recipient list by regularly removing inactive subscribers and ensuring that only interested users receive our emails.
+
+3. **Handling Bounces, Complaints, and Unsubscribes:**
+
+   - **Bounces:** We utilize CloudWatch monitoring for bounces. Hard bounces are automatically removed from our lists, and soft bounces are closely monitored.
+   - **Complaints:** Any email address that results in a complaint is promptly removed from our mailing lists to maintain our sender reputation.
+   - **Unsubscribes:** We provide a clear and easy-to-use unsubscribe mechanism in all our emails, with requests processed immediately to respect the preferences of our recipients.
+
+4. **Types of Emails Sent:**
+
+   - **Transactional Emails:** These include account verifications, password resets, and order confirmations, which are essential for user engagement and support.
+   - **Support Emails:** We handle customer inquiries and support requests via email, ensuring timely and helpful responses.
+
+5. **Content Quality:**
+   We are committed to sending high-quality, relevant, and engaging content. Examples include:
+
+   - **Transactional Email Example:**
+
+     ```plaintext
+     Subject: Account Verification Required
+     Dear [Customer Name],
+
+     Thank you for signing up with [Your Company Name]! Please verify your email address by clicking the link below:
+     [Verification Link]
+
+     Best regards,
+     [Your Company Name] Support Team
+     ```
+
+   - **Support Email Example:**
+
+     ```plaintext
+     Subject: Response to Your Support Request
+     Hello [Customer Name],
+
+     Thank you for reaching out to us. We have received your support request and will get back to you shortly with a solution.
+
+     Best,
+     [Your Company Name] Support Team
+     ```
+
+6. **Compliance and Best Practices:**
+   We adhere to industry best practices, including CAN-SPAM regulations, to maintain high deliverability rates and ensure our emails are welcomed by recipients.
+
+7. **Monitoring and Feedback Loop:**
+
+   - **CloudWatch Monitoring:** Real-time monitoring of bounces, complaints, and delivery events is configured to address any issues promptly and maintain a high sender reputation.
+   - **Event Destinations:** We have set up SES event destinations to log email metrics and dimensions, aiding in the analysis and improvement of our email campaigns.
+
+8. **Verified Identities:**
+   Our domain ([yourdomain.com]) is verified in Amazon SES, ensuring all emails are sent from a trusted and recognized source.
+
+9. **Future Plans:**
+   As our company grows, we plan to expand our email communications to include regular newsletters, product updates, and promotional offers, while continuing to adhere to best practices and ensuring high user engagement.
+
+We trust this comprehensive overview provides a clear understanding of our email-sending practices and our commitment to maintaining high standards. We kindly request your approval for production access to Amazon SES.
+
+Thank you for your consideration. I look forward to your positive response.
+
+Best regards,
+
+[Your Name]
+[Your Position]
+[Your Company Name]
+[Your Contact Information]
+
+</Accordion>
